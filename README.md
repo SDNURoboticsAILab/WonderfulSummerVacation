@@ -29,7 +29,7 @@ Difficulty score:4
 
 Difficulty score:9
 
-关于机械臂的轨迹生成以及平衡引擎的研究
+关于机械臂的轨迹生成以及平衡引擎（Based on RL）的研究
 
 ### Task4
 
