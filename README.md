@@ -16,24 +16,29 @@
 ### Task1
 
 Difficulty score:6
+
 是一个关于ROS+视觉SLAM算法的任务
 
 ### Task2
 
 Difficulty score:4
+
 是一道大模型代码生成的任务
 
 ### Task3
 
 Difficulty score:8
+
 关于机械臂的轨迹生成以及平衡引擎的研究
 
 ### Task4
 
 Difficulty score:5
+
 关于树莓派Linux交叉编译
 
 ### Task5
 
 Difficulty score:6
+
 一带一路人工智能竞赛
