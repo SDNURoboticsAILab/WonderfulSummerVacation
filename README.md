@@ -19,7 +19,7 @@
 
 #### Difficulty rating
 
-Difficulty score:7😟
+Difficulty score:8😟
 
 #### Summary one sentence
 
