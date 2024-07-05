@@ -2,10 +2,11 @@
 
 ## Introduction
 
+Recently, Ma_shijie wanted to make an Streaming ASR reasoner based on Raspberry PI 4B, and she needed to deploy this software on plenty of Raspberry PIs, and she needed to modify the code. Please refer to the following "**Procedure**" to complete the relevant work.And here are some introduction may help to you.
+
 [RaspberryPi](https://www.raspberrypi.com/) is a series of small single-board computers (SBCs) developed in the United Kingdom by the Raspberry Pi Foundation in association with Broadcom.  The Raspberry Pi project originally leaned toward the promotion of teaching basic computer science in schools.The original model became more popular than anticipated, selling outside its target market for diverse uses such as robotics, home and industrial automation, and by computer and electronic hobbyists, because of its low cost, modularity, open design, and its adoption of the HDMI and USB standards.
 
 [FastASR](https://github.com/chenkui164/FastASR) is a C++ implementation of ASR reasoning project, it relies on few, installation is also very simple, reasoning speed is very fast, Raspberry PI 4B and other ARM platform can also run smoothly. The supported model is optimized from Google's Transformer model, and the data set is open source wenetspeech(10,000 + hours) or Ali's private data set (60,000 + hours), so the recognition effect is also very good, comparable to many commercial ASR software.
-Recently, Ma_shijie wanted to make an Stream ASR reasoner based on Raspberry PI 4B, and she needed to deploy this software on plenty of Raspberry PIs, and she needed to modify the code.
 
 ## Procedure
 

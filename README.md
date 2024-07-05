@@ -26,7 +26,7 @@
 
 #### Difficulty rating
 
-Difficulty score:8😟
+Difficulty score:5😏
 
 #### Summary one sentence
 
@@ -37,6 +37,12 @@ Difficulty score:8😟
 - 论文查阅
 - ROS框架的使用
 - VINS视觉SLAM算法
+- 传感器
+- 优化算法
+
+#### Discipline
+
+机器人学、计算机视觉、ROS、SLAM
 
 ### Task2
 
@@ -51,9 +57,15 @@ Difficulty score:5😏
 #### Ability to improve
 
 - 论文查阅
-- 软件开发
-- 大语言模型的使用
-- 大语言模型的微调
+- 软件开发流程和工具
+- 预训练语言模型原理和应用
+- Prompt工程技术
+- 模型微调
+- 代码生成算法
+
+#### Discipline
+
+机器学习、自然语言处理、软件工程
 
 ### Task3
 
@@ -70,7 +82,13 @@ Difficulty score:9😫
 - 论文查阅
 - 论文复现
 - 机械臂运动学和动力学建模
-- 强化学习
+- 轨迹规划算法
+- 基于强化学习的机器人控制技术
+- 平衡控制算法
+
+#### Discipline
+
+强化学习、机器人学、控制工程
 
 ### Task4
 
@@ -86,8 +104,13 @@ Difficulty score:7🤨
 
 - 树莓派硬件的使用
 - 编译原理
-- 交叉编译以及优化
+- 交叉编译技术,针对ARM架构进行软件优化
 - 软件开发
+- 流式处理架构在实时应用中的应用
+
+#### Discipline
+
+嵌入式Linux系统、语音信号处理、深度学习
 
 ### Task5
 
@@ -101,6 +124,10 @@ Difficulty score:5😏
 
 #### Ability to improve
 
-- yolo框架
+- 目标检测、图像分类
 - 图像处理
-- PID控制
+- 控制系统建模和PID控制器设计
+
+#### Discipline
+
+计算机视觉、控制工程
