@@ -11,4 +11,4 @@
 - online temporal calibration (time offset between camera and IMU)
 - visual loop closure
 
-## 
+##
