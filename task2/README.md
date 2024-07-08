@@ -21,21 +21,24 @@ Please refer to the following "**Procedure**" to complete the relevant work.
 ### stage1
 
 1. Read the paper summarizing robocodeX and check out related papers.
-2. Based on these papers, please design the above architecture and draw the architecture diagram.
+2. Based on these papers, Based on these papers, please design such a platform architecture and identify the needs to be addressed.
+3. Please write the design document and draw the system architecture diagram.
 
-**Note:** The architecture diagram should explain the system operation process in detail, and write out the role of each module and the corresponding API of each module in detail.
+**Note:** You need to verify the feasibility of these designs
 
 ### stage2
 
-1. Based on the above architecture diagram, Implement your architecture.
+1. Based on your design, Implement your architecture.
+2. After the design is complete, test the corresponding functionality
 
-**Note:** It is recommended to find your own LLM module(Llama,Qwen,Phi,OPT.....) instead of directly calling others engine interface. If you want to complete stage 3, choose a large model that it can fine-tune。
+**Note:** It is recommended to build your local LLM module(Llama,Qwen,Phi,OPT.....) instead of directly calling others engine interface. If you want to complete stage 3, choose a local large model which can fine-tune。
 
 ### stage3 (optional)
 
 Fine-tuning large models: On the basis of selecting relevant datasets and pre-trained models, the model is trained with task-specific data to optimize its performance by setting appropriate hyperparameters and making necessary adjustments to the model.
 
-1.Build your own dataset and fine-tune your model.
+1. Build your own dataset.
+2. Fine-tune your model.
 
 ## Submit
 
