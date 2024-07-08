@@ -15,11 +15,16 @@
 ### Stage2
 
 1. Read three papers in the paper, and find the relevant papers.
-2. 
+2. Build [Isaac Sim](https://github.com/isaac-sim/IsaacLab) framework.
+3. Setting up a Simple Simulation based on Isaac Sim.
+4. Interacting with Assets based on Isaac Sim.
+5. Designing an Environment based on Isaac Sim.
+
+[refer](https://isaac-sim.github.io/IsaacLab)
 
 ### Stage3 (optional)
 
-1. Reproducing the paper "Learning to Control a Biped with Feet" using Isaac Sim.
+Reproducing the paper "Learning to Control a Biped with Feet" using Isaac Sim.
 
 ## Submit
 
