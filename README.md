@@ -75,7 +75,7 @@ Difficulty score:9😫
 
 #### Summary one sentence
 
-关于机械臂的轨迹生成以及平衡引擎(Based on RL)的研究
+关于机械臂的轨迹生成以及平衡引擎(Based on RL)的研究(需要nvidia显卡)
 
 #### Ability to improve
 
@@ -98,7 +98,8 @@ Difficulty score:7🤨
 
 #### Summary one sentence
 
-关于树莓派4B构建一个流式ASR推理软件(需构建交叉编译链)
+关于树莓派4B构建一个流式ASR推理软件(需交叉编译)
+🐼不要忘记借Raspberry Pi!!!
 
 #### Ability to improve
 
