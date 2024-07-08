@@ -26,7 +26,7 @@
 
 #### Difficulty rating
 
-Difficulty score:5😏
+Difficulty score:6🧐
 
 #### Summary one sentence
 
