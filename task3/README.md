@@ -14,7 +14,7 @@
 
 ### Stage2
 
-1. Read three papers in the paper, and find the relevant papers.
+1. Read three papers in the "paper" folder, and find the relevant papers.
 2. Build [Isaac Sim](https://github.com/isaac-sim/IsaacLab) framework.
 3. Setting up a Simple Simulation based on Isaac Sim.
 4. Interacting with Assets based on Isaac Sim.

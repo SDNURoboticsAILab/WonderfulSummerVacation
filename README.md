@@ -52,7 +52,7 @@ Difficulty score:5😏
 
 #### Summary one sentence
 
-是一道简单的大模型代码生成的任务
+是关于大模型推理和微调(需要nvidia显卡)
 
 #### Ability to improve
 
@@ -61,11 +61,10 @@ Difficulty score:5😏
 - 预训练语言模型原理和应用
 - Prompt工程技术
 - 模型微调
-- 代码生成算法
 
 #### Discipline
 
-机器学习、自然语言处理、软件工程
+机器学习、自然语言处理
 
 ### Task3
 
