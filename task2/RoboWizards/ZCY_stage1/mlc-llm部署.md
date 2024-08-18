@@ -54,7 +54,7 @@ F:\mlc-llm-env\mlc-llm\build>cmake --build . --parallel 16
 ![alt text](image-6.png)
 <font color="#dd0000">在后续操作中出现找不到mlc_llm.dll的错误，反推到这里出现了问题。但是这条命令可以正常执行，结果在build文件夹中创建了个debug文件夹。里面含有mlc_llm中唯一的mlc_llm.dll文件。后续'pip install -e .'操作中运行setup.py失败</font><br /> 
 ![alt text](image-8.png)
-<font color="#dd0000">发现在libinfo.py中搜索的是release版本，于斯给他手动填加了搜索debug，此命令可以顺利执行，但是后续'mlc_llm chat -h'时还是有问题。</font><br /> 
+<font color="#dd0000">发现在libinfo.py中搜索的是release版本，于是给他手动填加了搜索debug，此命令可以顺利执行，但是后续'mlc_llm chat -h'时还是有问题。</font><br /> 
 ![alt text](image-9.png)
 ![alt text](image-10.png)
 <font color="#dd0000">然后尝试重新指定生成release版本的'(mlc-chat-venv) F:\mlc-llm-env\mlc-llm\build>cmake -S F:/mlc-llm-env/mlc-llm -B F:/mlc-llm-env/mlc-llm/build -DCMAKE_BUILD_TYPE=Release'生成的还是debug，没有变。通过对比两个CMakeCache.txt文件里都是'CMAKE_BUILD_TYPE:UNINITIALIZED=Release
@@ -337,3 +337,82 @@ usage=CompletionUsage(
        - 每个标记间的延迟时间（秒）。
 
 ![alt text](image-24.png)
+问答其实效果不是特别好，模型对中文理解不高，推理时间过长（也有我用cpu运行的原因）
+![alt text](image-25.png)
+
+---
+用wrk测试性能
+1. 创建 Flask 应用
+创建一个新的 Python 文件 app.py：
+```python
+from flask import Flask, request, jsonify
+from mlc_engine import get_engine
+
+app = Flask(__name__)
+engine = get_engine()
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.json
+    message = data.get('message')
+    response = engine.chat.completions.create(
+        messages=[{"role": "user", "content": message}]
+    )
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+```
+2. 运行 Flask 应用
+```
+python app.py
+```
+1. 在GitHub下载和安装 wrk
+在 WSL 中编译 wrk
+安装依赖包：
+```
+sudo apt update
+sudo apt install build-essential libssl-dev
+sudo apt install unzip
+```
+编译 wrk：
+```
+make
+```
+2. 创建 Lua 脚本
+创建一个包含 POST 请求负载的 Lua 脚本 post.lua：
+```
+wrk.method = "POST"
+wrk.body   = '{"message":"hello"}'
+wrk.headers["Content-Type"] = "application/json"
+```
+3. 运行 wrk 测试
+```
+./wrk -t12 -c400 -d30s http://192.168.2.249:5000/chat -s post.lua
+```
+![alt text](image-26.png)
+
+>zcy@NicoleZ:/mnt/c/Users/21314/Downloads/wrk-4.2.0/wrk-4.2.0$ ./wrk -t12 -c400 -d30s http://192.168.2.249:5000/chat -s post.lua
+Running 30s test @ http://192.168.2.249:5000/chat
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   340.41ms   85.79ms 620.86ms   75.44%
+    Req/Sec     2.69      1.01     5.00     77.59%
+  58 requests in 30.10s, 25.94KB read
+  Socket errors: connect 0, read 0, write 0, timeout 1
+  Non-2xx or 3xx responses: 58
+Requests/sec:      1.93
+Transfer/sec:      0.86KB
+
+从 `wrk` 的输出结果可以看出，Flask 服务器在 30 秒的测试期间处理了 58 个请求，每秒约 1.93 个请求。
+
+#### 输出结果解释
+
+- **Latency (延迟)**: 请求的平均响应时间为 340.41 毫秒，标准差为 85.79 毫秒，最大延迟为 620.86 毫秒。
+- **Req/Sec (每秒请求数)**: 每秒处理的请求数平均为 2.69，标准差为 1.01，最大为 5.00。
+- **Total Requests (总请求数)**: 在 30.10 秒内，总共处理了 58 个请求。
+- **Data Transferred (传输的数据)**: 总共传输了 25.94 KB 的数据。
+- **Socket Errors (套接字错误)**: 在测试期间，没有发生连接、读取或写入错误，但发生了 1 次超时。
+- **Non-2xx or 3xx responses**: 所有的 58 个响应都不是 2xx 或 3xx 状态码，表明这些请求失败或返回了错误状态码。
+- **Requests/sec (每秒请求数)**: 平均每秒处理 1.93 个请求。
+- **Transfer/sec (每秒传输量)**: 平均每秒传输 0.86 KB 的数据。
