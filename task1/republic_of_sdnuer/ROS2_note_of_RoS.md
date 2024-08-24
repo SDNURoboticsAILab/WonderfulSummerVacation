@@ -222,6 +222,221 @@ ros2 run turtlesim  turtle_teleop_key
 
   A example to [try](https://github.com/fishros/fishbot/blob/navgation2/src/fishbot_description/urdf/fishbot_gazebo.urdf)
   
-  In rqt,  select  service **/spawn_entity**, paste the URDF code in xml(Do not forget to delete   ''   !!!)
+  In rqt,  select  service **/spawn_entity**, paste the URDF code in xml(don't forget to delete   ''   !!!)
+
+- #### **Turtlebot4**
+
+  **Install**
+
+  Install rcm
+
+  ```
+  curl https://www.ncnynl.com/rcm.sh | bash -
+  ```
+
+  Install tb4 with rcm
+
+  ```
+  rcm -s install_tb4_humble_source
+  ```
+
+  Launch standard edition
+
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py
+  ```
+
+  or the lite
+
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py model:=lite
+  ```
+
+  **Test lidar and camera**
+
+  Launch
+
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py
+  ```
+
+  In terminal
+
+  ```
+  ros2 topic echo /scan
+  ```
+
+  the result would be like:
+
+  ```
+  ---
+  header:
+    stamp:
+      sec: 172
+      nanosec: 816000000
+    frame_id: turtlebot4/rplidar_link/rplidar
+  angle_min: -3.1415927410125732
+  angle_max: 3.1415927410125732
+  angle_increment: 0.009832840412855148
+  time_increment: 0.0
+  scan_time: 0.0
+  range_min: 0.164000004529953
+  range_max: 12.0
+  ranges:
+  - 7.365904331207275
+  - 3.948739528656006
+  - 3.907142400741577
+  - 8.883407592773438
+  - 8.94767951965332
+  - 9.012924194335938
+  - 9.079118728637695
+  - 9.146242141723633
+  - 9.214299201965332
+  - 9.82641887664795
+  - 9.902118682861328
+  - 9.978501319885254
+  - 10.055573463439941
+  - .inf
+  - .inf
+  - '...'
+  intensities:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - '...'
+  ---
+  ```
+
+  meanwhile, you could use **rviz** to check the lidar
+
+  ```
+  ros2 launch turtlebot3_viz view_robot.launch.py
+  ```
+
+  use image_view to check the camera
+
+  ```
+  ros2 run rqt_image_view rqt_image_view 
+  ```
+
+  ##### **Asynchronous mapping**
+
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py sync:=false slam:=true nav2:=true rviz:=true
+  ```
+
+  ##### **Synchronous mapping**
+  
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py slam:=true rviz:=true
+  ```
+
+  ##### **Saving the map**
+  
+  ```
+  mkdir ~/map
+  ros2 run nav2_map_server map_saver_cli -f ~/map/slam_toolbox_async --ros-args -p save_map_timeout:=10000.00
+  ```
+
+  and
+  
+  ```
+    eog ~/map/slam_toolbox_async.pgm
+  ```
+  
+  ##### **Navigation**
+  
+  **single point:**
+  
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py nav2:=true slam:=false localization:=true 
+  ```
+  
+  ```
+  ros2 launch turtlebot4_viz view_robot.launch.py use_sim_time:=true
+  ```
+  
+  use 2D Pose Estimate to initialize, and then set destination with nav2 Goal.
   
   
+  
+  **multipoint:**
+  
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py nav2:=true slam:=false localization:=true 
+  ```
+  
+  ```
+  ros2 launch turtlebot4_viz view_robot.launch.py use_sim_time:=true
+  ```
+  
+  use 2D Pose Estimate to initialize, and then click waypoint/nav through poses mode, set destination with nav2 Goal. Final is Start Nav Through Poses. 
+  
+  
+  
+  **Merge mapping and navigation:**
+  
+  ```
+  ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py slam:=true nav2:=true rviz:=true
+  ```
+  
+  next steps are the same as above.
+  
+  
+  
+  #### **The problems you might encounter**
+  
+  1. **[error] (while the first launch)**
+  
+     ```
+     Package 'turtlebot4_ignition_bringup' not found: "package 'turtlebot4_ignition_bringup' not found, searching: ['/opt/ros/humble']"
+     ```
+  
+     Install ignition
+  
+     ```
+     sudo apt update
+     sudo apt -y install ignition
+     ```
+  
+  2. **defaults of lidar and camera**
+  
+     ```
+     As for lidar:
+     ......
+     ranges:
+     0
+     0
+     intensities:
+     1.0
+     1.0
+     ```
+  
+     You need to add an environment  variable
+  
+     ```
+     sudo vim ~/.bashrc
+     ```
+  
+     then,
+  
+     ```
+     export LIBGL_ALWAYS_SOFTWARE=true
+     ```
+  
+     go back to check if the lidar is working. 
+  
+     If so, however,  just **a little bit lagged**,  make sure that you already have the decent graphics driver.
+  
+     To start with, open **/ros2_tb4_ws/src/create3_sim/irobot_create_common/irobot_create_description/urdf/create3.urdf.xacro** . Check **Line 301** whether it is **ogre**. And you can find what you need from [here]([Ubuntu22.04安装显卡驱动(高速、避错版)-CSDN博客](https://blog.csdn.net/Eric_xkk/article/details/131800365)). You may need to set **Graphics Processing Unit Direct** in bios.
+  
+     
+
