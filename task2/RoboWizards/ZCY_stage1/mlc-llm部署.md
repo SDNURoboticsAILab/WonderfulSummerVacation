@@ -416,3 +416,92 @@ Transfer/sec:      0.86KB
 - **Non-2xx or 3xx responses**: 所有的 58 个响应都不是 2xx 或 3xx 状态码，表明这些请求失败或返回了错误状态码。
 - **Requests/sec (每秒请求数)**: 平均每秒处理 1.93 个请求。
 - **Transfer/sec (每秒传输量)**: 平均每秒传输 0.86 KB 的数据。
+
+---
+# Linux环境
+### transformer
+
+### 1. 创建并配置Conda虚拟环境
+```bash
+# 安装Conda后，创建名为kt的虚拟环境并指定Python版本
+conda create -n kt python=3.11
+
+# 激活虚拟环境
+conda activate kt
+
+# 设置自动激活虚拟环境
+echo "conda activate kt" >> ~/.bashrc
+```
+
+### 2. 安装必要的Python包
+```bash
+# 安装Transformers库和其他依赖
+pip install torch torchvision torchaudio transformers
+```
+
+### 3. 在虚拟环境中安装Jupyter和 `ipykernel` 并注册环境为内核：
+```bash
+pip install ipykernel
+python -m ipykernel install --user --name kt --display-name "Python (kt)"
+```
+
+### 4. 镜像网站下载模型
+**安装依赖**
+```bash
+pip install -U huggingface_hub
+```
+**设置环境变量**
+```bash
+export HF_ENDPOINT=https://hf-mirror.com
+```
+**下载模型**
+```bash
+huggingface-cli download --resume-download bert-base-chinese --local-dir ~/.cache/huggingface/transformers/bert-base-chinese
+```
+
+
+### 5. 加载Transformer模型并测试吞吐量
+```python
+from transformers import AutoModel, AutoTokenizer
+import torch
+from time import time
+
+#加载模型
+model = AutoModel.from_pretrained("/root/.cache/huggingface/transformers/bert-base-chinese")
+tokenizer = AutoTokenizer.from_pretrained("/root/.cache/huggingface/transformers/bert-base-chinese")
+
+# 准备输入数据
+inputs = tokenizer("测试中文模型的吞吐量", return_tensors="pt")
+batch_size = 32
+inputs = {k: v.repeat(batch_size, 1) for k, v in inputs.items()}
+
+# 测试吞吐量
+start_time = time()
+with torch.no_grad():
+    outputs = model(**inputs)
+elapsed_time = time() - start_time
+tokens_per_second = batch_size / elapsed_time
+print(f"吞吐量: {tokens_per_second:.2f} tokens/second")
+```
+![alt text](image-27.png)
+#### 6.使用Profiler工具进行更详细的性能分析
+```python
+import torch.profiler
+
+# 使用Profiler进行性能分析
+with torch.profiler.profile(
+    activities=[torch.profiler.ProfilerActivity.CPU, torch.profiler.ProfilerActivity.CUDA],
+    record_shapes=True,
+    profile_memory=True,
+    with_stack=True
+) as prof:
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+# 打印分析结果
+print(prof.key_averages().table(sort_by="cuda_time_total"))
+```
+![alt text](image-28.png)
+![alt text](image-29.png)
+后面优化。。。
+![alt text](image-30.png)
