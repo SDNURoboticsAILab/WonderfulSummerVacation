@@ -1,0 +1,4 @@
+source;share/fishbot_description/local_setup.bash
+source;share/fishbot_description/local_setup.dsv
+source;share/fishbot_description/local_setup.sh
+source;share/fishbot_description/local_setup.zsh
