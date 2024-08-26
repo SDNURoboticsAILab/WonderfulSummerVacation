@@ -70,9 +70,9 @@ print(f"Inference speed: {inference_speed_tokens_per_second:.2f} tokens/second")
 
 推理引擎的吞吐量（每秒推理数）：85.1 tokens/second
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\f79ab02a297b41c157535309136d12e6.png" alt="f79ab02a297b41c157535309136d12e6" style="zoom: 50%;" />
+<img src=".\asset\2.0\f79ab02a297b41c157535309136d12e6.png" alt="f79ab02a297b41c157535309136d12e6" style="zoom: 50%;" />
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240814143738017.png" alt="image-20240814143738017" style="zoom: 25%;" />
+<img src=".\asset\2.0\image-20240814143738017.png" alt="image-20240814143738017" style="zoom: 25%;" />
 
 ## stage2
 
@@ -136,23 +136,23 @@ if __name__ == '__main__':
 
 batch_size=5,processes=4:
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240814183823489.png" alt="image-20240814183823489" style="zoom: 50%;" />
+<img src=".\asset\2.0\image-20240814183823489.png" alt="image-20240814183823489" style="zoom: 50%;" />
 
 batch_size=16,processes=1:
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240814185546473.png" alt="image-20240814185546473" style="zoom:50%;" />
+<img src=".\asset\2.0\image-20240814185546473.png" alt="image-20240814185546473" style="zoom:50%;" />
 
 batch_size=10000,processes=1:
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240814190758726.png" alt="image-20240814190758726" style="zoom:50%;" />
+<img src=".\asset\2.0\image-20240814190758726.png" alt="image-20240814190758726" style="zoom:50%;" />
 
 batch_size=10000,processes=6:
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240814191437256.png" alt="image-20240814191437256" style="zoom:50%;" />
+<img src=".\asset\2.0\image-20240814191437256.png" alt="image-20240814191437256" style="zoom:50%;" />
 
 batch_size=1000,processes=6,flash_attention2:
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240815100955444.png" alt="image-20240815100955444" style="zoom:50%;" />
+<img src=".\asset\2.0\image-20240815100955444.png" alt="image-20240815100955444" style="zoom:50%;" />
 
 ## Stage3
 
@@ -160,13 +160,13 @@ batch_size=1000,processes=6,flash_attention2:
 
 下载open-vla模型，下载好dataset数据集（124GB）：
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\ff43b4f90290dba08a3adda3730f1de2.png" alt="ff43b4f90290dba08a3adda3730f1de2" style="zoom: 50%;" />
+<img src=".\asset\2.0\ff43b4f90290dba08a3adda3730f1de2.png" alt="ff43b4f90290dba08a3adda3730f1de2" style="zoom: 50%;" />
 
 通过lora进行微调(原实验采用的是一块带有 80 GB VRAM 的单个 A100 GPU，如果采用全面微调的话，)：
 
 * 最初用了一块NVIDIA GeForce RTX 4060 Ti：发现即使是将batch_size调至1，grad_accumulation_steps 调至1024，还是爆显存。
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\733e28f1c3e95a997d8144a1e5957516.png" alt="733e28f1c3e95a997d8144a1e5957516" style="zoom:50%;" />
+<img src=".\asset\2.0\733e28f1c3e95a997d8144a1e5957516.png" alt="733e28f1c3e95a997d8144a1e5957516" style="zoom:50%;" />
 
 #### 实践发现：
 
@@ -196,7 +196,7 @@ batch_size=1000,processes=6,flash_attention2:
 
 结果：
 
-![029bc7373b33e81f19fb8dc12d0a0cab](D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\029bc7373b33e81f19fb8dc12d0a0cab.png)
+![029bc7373b33e81f19fb8dc12d0a0cab](.\asset\2.0\029bc7373b33e81f19fb8dc12d0a0cab.png)
 
-![image-20240817213956569](D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240817213956569.png)
+![image-20240817213956569](.\asset\2.0\image-20240817213956569.png)
 

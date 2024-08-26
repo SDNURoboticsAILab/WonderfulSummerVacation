@@ -87,7 +87,7 @@ response_message = pipe(messages, max_new_tokens=512, streamer=streamer)[0]["gen
 
 回答：
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\3.0\image-20240818115502705.png" alt="image-20240818115502705" style="zoom:50%;" />
+<img src=".\asset\3.0\image-20240818115502705.png" alt="image-20240818115502705" style="zoom:50%;" />
 
 ##### 运行Qwen的GGUF文件 
 
@@ -114,7 +114,7 @@ make
 
 交互结果：
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\3.0\image-20240818130944418.png" alt="image-20240818130944418" style="zoom:50%;" />
+<img src=".\asset\3.0\image-20240818130944418.png" alt="image-20240818130944418" style="zoom:50%;" />
 
 1. **加载时间**： 模型加载所需的时间是4665.05毫秒。
 2. **采样时间**： 每次采样（生成响应）所需的时间是66.68毫秒，总共进行了153次采样。这表示每次采样平均需要66.68毫秒，并且模型可以以每秒2294.44个token的速度进行采样。
@@ -170,7 +170,7 @@ for output in outputs:
 
 **推理结果：**
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\3.0\image-20240820160627333.png" alt="image-20240820160627333" style="zoom:50%;" />
+<img src=".\asset\3.0\image-20240820160627333.png" alt="image-20240820160627333" style="zoom:50%;" />
 
 ```# vllm_model.py
 from vllm import LLM, SamplingParams
@@ -257,7 +257,7 @@ Prompt: '可以给我将一个有趣的童话故事吗？', Generated text: ' �
     --max-model-len 512
 ```
 
-<img src="D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\3.0\e4821d2a0fce0a5c82198bdf732a5a8a.png" alt="e4821d2a0fce0a5c82198bdf732a5a8a" style="zoom:50%;" />
+<img src=".\asset\3.0\e4821d2a0fce0a5c82198bdf732a5a8a.png" alt="e4821d2a0fce0a5c82198bdf732a5a8a" style="zoom:50%;" />
 
 **Throughput: 7.71 requests/s, 1479.95 tokens/s**
 
