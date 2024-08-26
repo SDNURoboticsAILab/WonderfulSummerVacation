@@ -196,7 +196,6 @@ batch_size=1000,processes=6,flash_attention2:
 
 结果：
 
-![029bc7373b33e81f19fb8dc12d0a0cab](.\asset\2.0\029bc7373b33e81f19fb8dc12d0a0cab.png)
+![029bc7373b33e81f19fb8dc12d0a0cab](D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\029bc7373b33e81f19fb8dc12d0a0cab.png)
 
-![image-20240817213956569](.\asset\2.0\image-20240817213956569.png)
-
+![image-20240817213956569](D:\211\WonderfulSummerVacation\task2\RoboWizards\CJ_stage2\asset\2.0\image-20240817213956569.png)
