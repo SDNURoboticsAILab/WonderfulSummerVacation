@@ -2,12 +2,20 @@
 
 **电脑配置：**
 操作系统：Windows
+
 GPU：NVIDIA GeForce RTX 3060 Laptop GPU
+
 GPU计算能力：8.6
+
 GPU内存：5.99951171875GB
+
 多处理器数量：30个
+
 CPU：12th Gen Intel(R) Core(TM) i9-12900H
+
 CPU核心数：20个
+
+cuda:   12.1
 
 
 
@@ -51,7 +59,7 @@ print(f"Total time: {total_time:.6f} seconds")
 print(f"Average time per inference: {avg_time:.6f} seconds")
 print(f"Inferences per second: {inferences_per_second:.2f}")
 ```
-用的模型为"bert-base-uncased",吞吐量为100左右，又将模型改为该模型的微调模型"distilbert-base-uncased",但吞吐量提升不大
+用的模型为 "bert-base-uncased",吞吐量为 100 左右，又将模型改为该模型的微调模型 "distilbert-base-uncased",但吞吐量提升不大
 
 
 **优化推理引擎**
@@ -117,11 +125,31 @@ print(f"Average time per iteration: {avg_time:.6f} seconds")
 print(f"Inferences per second: {inferences_per_second:.2f}")
 ```
 
-对模型进行了批量处理，使用`DataLoader`和较大的批量大小来减少处理次数并优化GPU利用率，吞吐量有了较大的提升,达到230左右
+对模型进行了批量处理，使用`DataLoader`和较大的批量大小来减少处理次数并优化GPU利用率，吞吐量有了较大的提升,达到230左右。
+
+`max_length` 是在处理文本数据时，对输入序列长度的最大限制。对于变长的输入序列，`max_length` 确定了输入的最大长度，超出该长度的部分会被截断。在处理每个输入时，`max_length` 直接影响计算的复杂度，尤其是在自注意力机制（如 BERT）中，序列长度的平方级别复杂度可能导致计算成本增加。
+
+`batch_size` 是一次模型推理或训练中处理的样本数量，在推理过程中，`batch_size` 影响计算吞吐量。较大的批量可以提高每次推理的效率，但同样需要更多的计算资源和内存。我对 batch_size 进行了多次大小调整，发现batch_size变大时，模型吞吐量会逐渐上升，batch_size增大到一定程度时，会直线下降到与增大前几乎相同的吞吐量。
+
+当max_length=128时：
+
+batch_size=70		吞吐量为 288 samples/second 左右
+
+batch_size=90		吞吐量为 365 samples/second 左右
+
+batch_size=127	      吞吐量为 480 samples/second 左右
+
+batch_size=150	      吞吐量为 255 samples/second 左右
+
+经过多次调整 max_length 和 batch_size 发现，当 max_length 较小时，吞吐量会相对较大，随着 max_length 变大，吞吐量会逐渐变小。batch_size 大小也与 max_length 大小有关，当 batch_size 小于 max_length 时，随着 batch_size 变大，吞吐量会逐渐上升，当 batch_size 大于等于 max_length 时，吞吐量直线下降。最终发现，最高组合吞吐量大约在 500 samples/second 左右
+
+
+
+
 
 同时尝试通过实现异步数据加载以优化吞吐量，可以使用PyTorch的`DataLoader`的多线程/进程功能（`num_workers`参数）。这样，数据加载可以在多个线程/进程中异步进行，减少数据准备的时间浪费。
 
-**`num_workers`**：设置为4，表示使用4个子进程进行数据加载。可以根据硬件性能调整此值来优化性能。
+**`num_workers`**：设置为 4，表示使用4个子进程进行数据加载。可以根据硬件性能调整此值来优化性能。
 
 **pin_memory**：设置为`True`，使数据在加载到GPU之前被锁定在内存中，从而加快数据转移速度。
 
