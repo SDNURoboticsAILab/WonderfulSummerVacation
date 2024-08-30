@@ -15,4 +15,4 @@ Build "an LLM-based behavior generation engine that enables robots to understand
 
 ## Last but not least
 
-To see the presentation of our work, check ***Presentation.pptx***, all the code and data set we used are in the ***src folder***.
+To see the presentation of our work, check ***Presentation.pptx***, all the code and dataset we used are all in the folder.
