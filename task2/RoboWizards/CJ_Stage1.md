@@ -253,3 +253,16 @@ ERROR: failed to solve: process "/bin/sh -c pip wheel -r requirements-mamba.txt"
 
 
 
+参考文献：
+
+[字节跳动提出高性能 transformer 推理库，获 IPDPS 2023 最佳论文奖-CSDN博客](https://blog.csdn.net/ByteDanceTech/article/details/131238326)
+
+[解锁 vLLM：大语言模型推理的速度与效率双提升-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/2351458)
+
+[【综述论文】UC Berkeley：Transformer推理全栈优化研究进展综述 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/663879289)
+
+[DeepSpeed-Inference: 大规模Transformer模型高效推理 (qq.com)](https://mp.weixin.qq.com/s?__biz=MzU2ODU3Mzc4Nw==&mid=2247500735&idx=2&sn=bc6104b44547701bff8014aa22e39fc2)
+
+[[2205.09579\] TRT-ViT: TensorRT-oriented Vision Transformer (arxiv.org)](https://arxiv.org/abs/2205.09579)
+
+[Dynamic and Efficient Inference for Text Generation via BERT Family - ACL Anthology](https://aclanthology.org/2023.acl-long.162/)
