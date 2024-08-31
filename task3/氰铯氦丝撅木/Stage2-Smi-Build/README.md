@@ -196,3 +196,11 @@ source env_isaacsim/bin/activate
 ---
 
 ## Isaac Sim，启动！
+
+初次使用 ，需要同意相关许可证
+
+```python
+import os
+os.environ["OMNI_KIT_ACCEPT_EULA"] = "YES"
+```
+
