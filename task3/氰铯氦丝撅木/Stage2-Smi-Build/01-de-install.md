@@ -1062,8 +1062,6 @@ rm ~/.vnc/passwd
 vncserver -geometry 1920x1080
 ```
 
-
-
 ---
 
 ### 1.安装KDE桌面
