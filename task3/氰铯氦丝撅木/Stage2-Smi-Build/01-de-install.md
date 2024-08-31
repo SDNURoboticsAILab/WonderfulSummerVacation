@@ -1036,6 +1036,34 @@ vncserver -kill :1
 vncserver -geometry 1920x1080
 ```
 
+5. 如果遇到下面类似的报错
+
+```bash
+(base) root@autodl-container-ae0c4bafdd-217fb69d:~# vncserver -geometry 1920x1080
+
+Warning: autodl-container-ae0c4bafdd-217fb69d:1 is taken because of /tmp/.X11-unix/X1
+Remove this file if there is no X server autodl-container-ae0c4bafdd-217fb69d:1
+
+Warning: autodl-container-ae0c4bafdd-217fb69d:2 is taken because of /tmp/.X11-unix/X2
+Remove this file if there is no X server autodl-container-ae0c4bafdd-217fb69d:2
+
+New 'X' desktop is autodl-container-ae0c4bafdd-217fb69d:4
+
+Starting applications specified in /root/.vnc/xstartup
+Log file is /root/.vnc/autodl-container-ae0c4bafdd-217fb69d:4.log
+```
+
+可以这样解决
+
+```bash
+vncserver -kill :1
+rm /tmp/.X11-unix/X1 /tmp/.X11-unix/X2
+rm ~/.vnc/passwd
+vncserver -geometry 1920x1080
+```
+
+
+
 ---
 
 ### 1.安装KDE桌面
