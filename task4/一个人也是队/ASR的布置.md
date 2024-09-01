@@ -1,0 +1,99 @@
+### 1安装依赖：
+
+###                           <img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830195213948.png" alt="image-20240830195213948" style="zoom:50%;" />
+
+###### pip安装上来就是一个报错
+
+##### 解决:
+
+应该是没有换源，换一下源试一下，[教程](https://blog.csdn.net/m0_58003757/article/details/1)
+
+还有pip的换源[教程]([树莓派4b学习笔记二：给pip或pip3换源的两种方式(永久换源和临时换源)_树莓派更换pip3源-CSDN博客](https://blog.csdn.net/qq_39507748/article/details/105068524))
+
+好像还是不行，QAQ
+
+尝试了一下，最后通过提示在末尾加了选项就可以了，不过还是得换源。
+
+记得以后拿到新设备先给换源。
+
+​                          <img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830200320810.png" alt="image-20240830200320810" style="zoom:50%;" />
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830200454720.png" alt="image-20240830200454720" style="zoom:50%;" />
+
+### 2：安装三库
+
+在github上移动代码又有问题，在树莓派上没有代理，没办法，只能通过scp，通过主机迁移了。
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830200756240.png" alt="image-20240830200756240" style="zoom:50%;" />
+
+### 2.编译源码
+
+​                                   <img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830202004153.png" alt="image-20240830202004153" style="zoom:50%;" />、
+
+编译源码的时候又出现了报错:cry:
+
+​                                       <img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830202311638.png" alt="image-20240830202311638" style="zoom:50%;" />
+
+少库安装一下试一试，可以看一下这个[教程]([fftw3入门——安装 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/559063364)).
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830203544232.png" alt="image-20240830203544232" style="zoom:50%;" />
+
+安装完可以继续了:smile:
+
+又出现错误了
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830203701782.png" alt="image-20240830203701782" style="zoom:50%;" />
+
+后边问chatgpt           
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830204620213.png" alt="image-20240830204620213" style="zoom:50%;" />
+
+根据手动安装依赖项，以及修复破损的包，也是成功了:happy:
+
+后边遇到了，编译卡住的问题，通过make clean再make未解决                   
+
+​                                               <img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830205147492.png" alt="image-20240830205147492" style="zoom:50%;" />
+
+检查磁盘也没问题
+
+​                                               <img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830205320179.png" alt="image-20240830205320179" style="zoom: 67%;" />
+
+最后觉得有可能是权限不够，sudo make试了一下成功了:happy:
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830205417058.png" alt="image-20240830205417058" style="zoom: 67%;" />
+
+又卡住了，没事网上搜索，差包，安装解决
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830210007798.png" alt="image-20240830210007798" style="zoom:67%;" />
+
+成功了:happy:
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830210235352.png" alt="image-20240830210235352" style="zoom:67%;" />
+
+但是python编译时，我遇到了问题导致无法解决
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830220706421.png" alt="image-20240830220706421" style="zoom:67%;" />
+
+QAQ
+
+没办法，只能继续向下部署了
+
+接下来也是模型的下载<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830220935616.png" alt="image-20240830220935616" style="zoom: 50%;" />
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240830221009371.png" alt="image-20240830221009371" style="zoom:50%;" />
+
+但是有一步卡住了，最后环境还是没有配置出来QAQ，算了就先这样吧，先忙数学建模了，后边有时间再弄一下
+
+在昨天卡住了，今天又继续重复了上述步骤，竟然成功了，估计是pip换源出错了，果然遇到问题应该多次尝试:happy:
+
+![image-20240831162318572](C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240831162318572.png)
+
+下载模型也是相当顺利，就是比较费流量 :cry:
+
+我测试的是流式模型<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240831165436937.png" alt="image-20240831165436937" style="zoom: 50%;" />
+
+<img src="C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240831165450874.png" alt="image-20240831165450874" style="zoom:67%;" />
+
+测试成功:happy:
+
+![image-20240831175600597](C:\Users\17247\AppData\Roaming\Typora\typora-user-images\image-20240831175612798.png)
