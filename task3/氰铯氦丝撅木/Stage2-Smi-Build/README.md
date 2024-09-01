@@ -159,9 +159,24 @@ conda clean --all #清理所有缓存
 
 创建虚拟环境
 
+Linux
+
 ```bash
 python3.10 -m venv env_isaacsim
 source env_isaacsim/bin/activate
+```
+
+Powershell
+
+```powershell
+& "C:\Program Files\Python310\python.exe" -m venv env_isaacsim
+& "env_isaacsim\Scripts\Activate.ps1"
+```
+
+如果你在执行 `Activate.ps1` 脚本时遇到权限问题，可能需要调整 PowerShell 的执行策略。你可以通过以下命令临时更改执行策略：
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
 ### 安装 Isaac Sim 软件包
