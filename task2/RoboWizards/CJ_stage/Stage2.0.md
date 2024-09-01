@@ -29,7 +29,7 @@
 
 **部署环境**：wsl2-ubuntu22.04
 
-**GPU**:nvidia-3050
+**GPU**:nvidia-3050（本地）
 
 **模型**：openai-community/gpt2
 
@@ -158,11 +158,25 @@ batch_size=1000,processes=6,flash_attention2:
 
 ### 部署OpenVLA并开发机器人API接口
 
+**Transformers版本**：4.45.0dev
+
+**cuda版本**:12.1
+
+**cuda--toolkit版本**：cuda--toolkit-12-6
+
+**部署环境**：云端ubuntu20.04
+
+**GPU**:nvidia-4060TI（本地）
+
+**模型**：openvla/openvla-7b
+
+***
+
 下载open-vla模型，下载好dataset数据集（124GB）：
 
 <img src=".\asset\2.0\ff43b4f90290dba08a3adda3730f1de2.png" alt="ff43b4f90290dba08a3adda3730f1de2" style="zoom: 50%;" />
 
-通过lora进行微调(原实验采用的是一块带有 80 GB VRAM 的单个 A100 GPU，如果采用全面微调的话，)：
+通过lora进行微调(原实验采用的是一块带有 80 GB VRAM 的单个 A100 GPU，如果采用全面微调的话，原实验采用的是8块 80 GB 的A100 GPU)：
 
 * 最初用了一块NVIDIA GeForce RTX 4060 Ti：发现即使是将batch_size调至1，grad_accumulation_steps 调至1024，还是爆显存。
 
@@ -199,3 +213,7 @@ batch_size=1000,processes=6,flash_attention2:
 ![029bc7373b33e81f19fb8dc12d0a0cab](./asset/2.0/029bc7373b33e81f19fb8dc12d0a0cab.png)
 
 ![image-20240817213956569](./asset/2.0/image-20240817213956569.png)
+
+参考文献：
+
+[[2406.09246\] OpenVLA: An Open-Source Vision-Language-Action Model (arxiv.org)](https://arxiv.org/abs/2406.09246)

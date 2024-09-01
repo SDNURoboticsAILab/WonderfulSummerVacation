@@ -261,6 +261,8 @@ Prompt: '可以给我将一个有趣的童话故事吗？', Generated text: ' �
 
 **Throughput: 7.71 requests/s, 1479.95 tokens/s**
 
+<img src=".\asset\3.0\f20675ca8fe0669084d938395cfb7e9f.png" alt="f20675ca8fe0669084d938395cfb7e9f" style="zoom:50%;" />
+
 * **测试原始方式（即使用 `HuggingFace` 的 `Transformers` 库）**推理速度的命令和参数设置
 
 ```python benchmark_throughput.py \

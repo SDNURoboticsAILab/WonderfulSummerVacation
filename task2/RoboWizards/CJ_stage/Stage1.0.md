@@ -29,9 +29,19 @@ GPU:nvidia-3050
 
 模型：Qwen/Qwen2-1.5B-Instruct
 
+#### 以下通过查阅文献比较 Transformer、VLLM、Tensor-RT、DeepSpeed 和 Text Generation Inference 等几种主流推理引擎：
+
+| 推理引擎                  | 主要特点                         | 性能优势                   | 优化技术                     | 支持平台/语言               | 使用场景                 |
+| ------------------------- | -------------------------------- | -------------------------- | ---------------------------- | --------------------------- | ------------------------ |
+| Transformer               | 基于自注意力机制的序列到序列模型 | 并行计算能力强             | 多头注意力，位置编码         | 多平台，支持多种编程语言等  | 自然语言处理，机器翻译等 |
+| VLLM                      | 针对大语言模型的低延迟推理       | 高吞吐量，低延迟           | 批量调度，动态解码           | GPU加速，Python等           | 大规模语言模型推理       |
+| TensorRT                  | NVIDIA的深度学习优化框架         | 高效推理速度               | 动态形状支持，张量重编译     | NVIDIA GPU，CUDA等          | 深度学习模型的高性能推理 |
+| DeepSpeed                 | 微软开发的深度学习优化工具       | 训练和推理加速             | 分布式训练优化，自动混合精度 | 多种硬件平台，Python等      | 大型模型训练与推理       |
+| Text Generation Inference | 专为文本生成任务设计的优化工具   | 快速响应时间，高效内存管理 | 量化，批处理优化             | CPU/GPU，支持多种编程语言等 | 文本生成任务             |
+
 #### 使用 Docker 进行部署（已完成）：
 
-##### BUG1:
+##### BUG:
 
 ```(moon) angel@angle:/mnt/c/Users/evil angle/vllm$ DOCKER_BUILDKIT=1 docker build . --target vllm-openai --tag vllm/vllm-openai
 (moon) angel@angle:/mnt/c/Users/evil angle/vllm$ DOCKER_BUILDKIT=1 docker build . --target vllm-openai --tag vllm/vllm-openai
@@ -243,3 +253,16 @@ ERROR: failed to solve: process "/bin/sh -c pip wheel -r requirements-mamba.txt"
 
 
 
+参考文献：
+
+[字节跳动提出高性能 transformer 推理库，获 IPDPS 2023 最佳论文奖-CSDN博客](https://blog.csdn.net/ByteDanceTech/article/details/131238326)
+
+[解锁 vLLM：大语言模型推理的速度与效率双提升-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/2351458)
+
+[【综述论文】UC Berkeley：Transformer推理全栈优化研究进展综述 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/663879289)
+
+[DeepSpeed-Inference: 大规模Transformer模型高效推理 (qq.com)](https://mp.weixin.qq.com/s?__biz=MzU2ODU3Mzc4Nw==&mid=2247500735&idx=2&sn=bc6104b44547701bff8014aa22e39fc2)
+
+[[2205.09579\] TRT-ViT: TensorRT-oriented Vision Transformer (arxiv.org)](https://arxiv.org/abs/2205.09579)
+
+[Dynamic and Efficient Inference for Text Generation via BERT Family - ACL Anthology](https://aclanthology.org/2023.acl-long.162/)
