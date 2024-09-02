@@ -1,0 +1,3 @@
+选择了SpeechRecognition + PocketSphinx来实现ASR
+
+这个是我的一个简单的实现，但是由于不符合要求，因此被当成了废案
