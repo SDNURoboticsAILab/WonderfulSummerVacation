@@ -179,6 +179,13 @@ Powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
+### 全局换源
+
+```bash
+mkdir -p ~/.pip
+nano ~/.pip/pip.conf
+```
+
 ### 安装 Isaac Sim 软件包
 
 ```bash
@@ -208,14 +215,56 @@ python3.10 -m venv env_isaacsim
 source env_isaacsim/bin/activate
 ```
 
----
-
-## Isaac Sim，启动！
-
-初次使用 ，需要同意相关许可证
+需要同意相关许可证
 
 ```python
 import os
 os.environ["OMNI_KIT_ACCEPT_EULA"] = "YES"
+```
+
+## 安装 Isaac Lab
+
+### 克隆仓库
+
+```bash
+git clone https://github.com/isaac-sim/IsaacLab.git
+```
+
+### 测试
+
+```bash
+cd IsaacLab/
+./isaaclab.sh --help
+
+usage: isaaclab.sh [-h] [-i] [-f] [-p] [-s] [-t] [-o] [-v] [-d] [-c] -- Utility to manage Isaac Lab.
+
+optional arguments:
+   -h, --help           Display the help content.
+   -i, --install [LIB]  Install the extensions inside Isaac Lab and learning frameworks (rl-games, rsl-rl, sb3, skrl) as extra dependencies. Default is 'all'.
+   -f, --format         Run pre-commit to format the code and check lints.
+   -p, --python         Run the python executable provided by Isaac Sim or virtual environment (if active).
+   -s, --sim            Run the simulator executable (isaac-sim.sh) provided by Isaac Sim.
+   -t, --test           Run all python unittest tests.
+   -o, --docker         Run the docker container helper script (docker/container.sh).
+   -v, --vscode         Generate the VSCode settings file from template.
+   -d, --docs           Build the documentation from source using sphinx.
+   -c, --conda [NAME]   Create the conda environment for Isaac Lab. Default name is 'isaaclab'.
+```
+
+### 创建 Isaac Sim 符号链接
+
+```bash
+cd IsaacLab
+ln -s path_to_isaac_sim _isaac_sim
+```
+
+On Linux systems, by default, Isaac Sim is installed in the directory `${HOME}/.local/share/ov/pkg/isaac_sim-*`, with `*` corresponding to the Isaac Sim version.
+
+### 安装
+
+```bash
+# these dependency are needed by robomimic which is not available on Windows
+sudo apt install cmake build-essential #安装依赖
+./isaaclab.sh --install rl_games  # or "./isaaclab.sh -i rl_games"
 ```
 
